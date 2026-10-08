@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Appointment>
+
+<div class="container py-5">
+
+    <h2 class="text-center mb-4">
+        All Appointments
+    </h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Specialization</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@appointment.PatientName</td>
+                    <td>@appointment.Doctor.DoctorName</td>
+                    <td>@appointment.Doctor.Specialization</td>
+                    <td>@appointment.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@appointment.Time</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

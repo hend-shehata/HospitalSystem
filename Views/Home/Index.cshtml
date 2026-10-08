@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital System</title>
+
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Custom site.css -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="hospital-home">
+
+    <!-- Navbar -->
+    <header class="navbar-custom">
+
+        <span class="hospital-title">Hospital System</span>
+        <nav class="nav-links" aria-label="Main">
+            <a asp-controller="Home" asp-action="Doctors" class="btn-custom-outline">
+                <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Book Appointment
+            </a>
+
+          
+            <a asp-controller="Home"
+               asp-action="AllAppointments" class="footer-brand"
+               class="btn-custom-text">
+                <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+                View Appointments
+            </a>
+           
+
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero-section">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Welcome to Hospital System</h1>
+            <p>Efficiently manage doctors, patients, and appointments</p>
+
+            <div class="hero-actions">
+                <a asp-controller="Home" asp-action="Doctors" class="hero-btn hero-btn-primary">
+                    <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Book Appointment
+                </a>
+
+                <a asp-controller="Home"
+                   asp-action="AllAppointments"
+                   class="btn-custom-text">
+                    <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+                    View Appointments
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+            <span>HospitalSystem</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+            <a asp-controller="Doctor" asp-action="Index">Book Appointment</a>
+            <a asp-controller="Appointment" asp-action="Index">View Appointments</a>
+        </nav>
+        <small>&copy; @DateTime.Now.Year HospitalSystem. All rights reserved.</small>
+    </footer>
+
+    <!-- Custom site.js -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

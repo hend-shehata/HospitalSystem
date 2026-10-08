@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Doctor>
+<div class="container py-5">
+    <form method="get" class="row g-3 mb-5">
+
+        <div class="col-md-4">
+            <label class="form-label">Doctor Name</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Search by doctor name..."
+                   name="SearchName"
+                   value="@ViewBag.SearchName" />
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Specialization</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Search specialization..."
+                   name="SearchSpecialization"
+                   value="@ViewBag.SearchSpecialization" />
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-filter"></i>
+                Filter
+            </button>
+
+            <a asp-action="Doctors" class="btn btn-secondary">
+                <i class="fa-solid fa-rotate-left"></i>
+                Reset
+            </a>
+        </div>
+
+    </form>
+    <h2 class="text-center mb-5">Our Doctors</h2>
+
+    <div class="row">
+
+        @foreach (var doctor in Model)
+        {
+
+            <div class="col-md-4 mb-4">
+                <div class="card doctor-card">
+
+                    <img src="~/Images/@doctor.Image"
+                         class="card-img-top"
+                         alt="Doctor">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@doctor.DoctorName</h5>
+                        <p class="text-muted">@doctor.Specialization</p>
+                        <a asp-controller="Home"
+                           asp-action="MakeAppointment"
+                           asp-route-doctorId="@doctor.Id"
+                           class="btn btn-primary">
+                            Make Appointment
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" href="/Home/Doctors?PageNumber=@(ViewBag.CurrentPage - 1)">Previous</a>
+                </li>
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "") ">
+                        <a class="page-link" href="/Home/Doctors?PageNumber=@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+
+                    <a class="page-link" href="/Home/Doctors?PageNumber=@(ViewBag.CurrentPage + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</div>

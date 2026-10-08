@@ -1,0 +1,385 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* =========================================================
+   Hospital System - Home page
+   ========================================================= */
+
+:root {
+    --hs-gutter: clamp(16px, 4vw, 50px);
+    --hs-navy: 8, 20, 45; /* rgb للـ overlay */
+    --hs-accent: #258cfb;
+    --hs-text-soft: #dbe5f3;
+}
+
+/* الصفحة الرئيسية من غير الـ margin-bottom بتاع الـ layout (ده كان بيسيب شريط أبيض تحت الصورة) */
+.hospital-home {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: rgb(var(--hs-navy));
+}
+
+/* ---------- Navbar ---------- */
+.navbar-custom {
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap; /* يلف على سطرين في الموبايل بدل ما يتزنق */
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px 20px;
+    padding: 20px var(--hs-gutter);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 15px;
+}
+
+.btn-custom-outline {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color .25s ease;
+}
+
+    .btn-custom-outline:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
+    }
+
+.btn-custom-text {
+    color: rgba(255, 255, 255, 0.85);
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+    .btn-custom-text:hover {
+        color: #fff;
+    }
+
+    .btn-custom-outline:focus-visible,
+    .btn-custom-text:focus-visible,
+    .hero-btn:focus-visible,
+    .quick-card:focus-visible,
+    .logo:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 3px;
+    }
+
+/* ---------- Hero ---------- */
+.hero-section {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px var(--hs-gutter) 56px;
+    background-color: rgb(var(--hs-navy));
+    overflow: hidden;
+}
+
+    /* الطبقة الأولى: نسخة مغبّشة بتملا الجوانب */
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        inset: -40px;
+        z-index: -3;
+        background: url('../images/mainimg.jpg') center / cover no-repeat;
+        filter: blur(28px) brightness(.7);
+    }
+
+    /* الطبقة الثانية: الصورة كاملة من غير قص */
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: url('../images/mainimg.jpg') center / contain no-repeat;
+    }
+
+/* overlay أخف: غامق فوق وتحت (عشان النص يتقري) وشفاف في النص (عشان الصورة تبان حادة) */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(var(--hs-navy), .70) 0%, rgba(var(--hs-navy), .30) 30%, rgba(var(--hs-navy), .35) 60%, rgba(var(--hs-navy), .85) 100%), linear-gradient(135deg, rgba(40, 85, 130, .22), rgba(15, 32, 67, .12));
+}
+
+.hero-content {
+    padding: clamp(24px, 4.5vw, 48px);
+    background: rgba(var(--hs-navy), .12);
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 24px;
+    box-shadow: none;
+    /* من غير backdrop-filter عشان الصورة تفضل حادة */
+}
+
+    .hero-content h1 {
+        color: #fff;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, .55);
+    }
+
+    .hero-content p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: var(--hs-text-soft);
+        margin: 0 auto 28px;
+        max-width: 52ch;
+        text-shadow: 0 1px 10px rgba(0, 0, 0, .5);
+    }
+
+.hero-section {
+    background-image: url('../images/mainimg.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    background-color: rgb(var(--hs-navy));
+    overflow: visible;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+.hero-btn-primary {
+    background: var(--hs-accent);
+    color: #fff;
+    border: 1px solid var(--hs-accent);
+}
+
+    .hero-btn-primary:hover {
+        background: #1a74d8;
+        border-color: #1a74d8;
+        color: #fff;
+    }
+
+.hero-btn-ghost {
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+    .hero-btn-ghost:hover {
+        background: rgba(255, 255, 255, .22);
+        color: #fff;
+    }
+
+/* ---------- Quick links (doctors / patients / appointments) ---------- */
+.quick-links {
+    width: 100%;
+    max-width: 980px;
+    margin-top: clamp(32px, 6vh, 64px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /* 3 جنب بعض ← 1 تحت بعض تلقائي */
+    gap: 16px;
+}
+
+.quick-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    text-align: start;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, .10);
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color .25s ease, border-color .25s ease;
+}
+
+    .quick-card:hover {
+        background: rgba(255, 255, 255, .20);
+        border-color: rgba(255, 255, 255, .45);
+        color: #fff;
+    }
+
+.quick-card-icon {
+    flex: 0 0 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    border-radius: 12px;
+    background: rgba(37, 140, 251, .35);
+}
+
+.quick-card strong {
+    display: block;
+    font-size: 1rem;
+}
+
+.quick-card span.desc {
+    display: block;
+    font-size: .85rem;
+    color: var(--hs-text-soft);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 575.98px) {
+    .navbar-custom {
+        justify-content: center;
+    }
+
+    .hero-section {
+        padding-top: 140px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-btn {
+        justify-content: center;
+    }
+}
+
+/* ---------- Motion ---------- */
+@keyframes hero-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-content {
+        animation: none;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px 24px;
+    padding: 20px var(--hs-gutter);
+    background: rgb(var(--hs-navy));
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    color: var(--hs-text-soft);
+    font-size: .9rem;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+}
+
+    .footer-links a {
+        color: var(--hs-text-soft);
+        text-decoration: none;
+    }
+
+        .footer-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+@media (max-width: 575.98px) {
+    .site-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.doctor-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    object-position: center;
+    background-color: lightblue;
+}
+
+.hospital-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: darkturquoise;
+}
+
